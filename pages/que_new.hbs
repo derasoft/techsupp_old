@@ -1,0 +1,63 @@
+<script src="/static/jquery-3.7.1.min.js"></script>
+<form method="post">
+    <p>У вас появились проблемы? Сочувствуем. Сейчас вам нужно будет описать вашу проблему шаг за шагом в формах ниже. Не бойтесь, я, текст на фоне какого-то там цвета, направлю вас в нужном направлении - просто заполняйте поля по очереди.</p>
+    <p>1. Пожалуйста, убедитесь, что данные в вашем <a href="/profile">профиле</a> актуальны и правильны. Если мы не сможем с вами связаться в течении дня, то заявку придётся заполнять заново.</p>
+    <p>2. Начните заполнять селекторы ниже, чтобы мы смогли собрать у вас всю необхоимую информацию о вашей проблеме.</p>
+    <select name="generalType" onchange="redraw()">
+        <option value="0" selected="selected">---</option>
+        <option value="1">У меня проблемы с принтером</option>
+        <option value="2">У меня проблема с электронными ключами</option>
+        <option value="?">Проблемы нет в списке</option>
+    </select>
+    <p name="deviceID_p">Укажите номер принтера, с которым у вас проблемы.</p>
+    <input type="number" name="deviceID" onchange="redraw()">
+    <p name="printerProblem_p">На что жалуетесь?</p>
+    <select name="printerProblem" onchange="redraw()">
+        <option value="0" selected="selected">---</option>
+        <option value="1">Кончается картридж</option>
+        <option value="2">Принтер плохо берёт бумагу</option>
+        <option value="3">Принтер берёт бумагу сразу пачкой</option>
+        <option value="4">Принтер начинает брать листы однин за одним и давится ими</option>
+        <option value="5">Бледно печатает всю страницу/проблемы с цветом</option>
+        <option value="6">Бледно печатает полосами</option>
+        <option value="7">Печатает с серым фоном/непонятными кляксами</option>
+        <option value="?">Проблемы нет в списке</option>
+    </select>
+    <p name="summary1">Заполнив эту анкету вы сэкономили нашим айтишникам 10-20 минут, за что вам большое спасибо! Есть какие-то уточнения по вашей проблеме?</p>
+    <p name="summary2">Если вам нужен новый электронный ключ, предупредите об этом Марию (раб. тел. 248), возможно, нужна будет её помощь. Пожалуйста, опишите в чём заключается ваша проблема, затем отправьте заявку.</p>
+    <p name="summary3">Пожалуйста, детально опишите вашу проблему. Чем больше информации вы сможете дать и чем точнее она будет, тем быстрее мы сможем разобраться с вашей проблемой.</p>
+    <input name="other" type="text"> <br>
+    <input id="send" type="submit">
+</form>
+<script>
+    let generalType = $("select[name='generalType']")[0];
+    let deviceID_p = $("p[name='deviceID_p']")[0];
+    let deviceID = $("input[name='deviceID']")[0];
+    let printerProblem_p = $("p[name='printerProblem_p']")[0];
+    let printerProblem = $("select[name='printerProblem']")[0];
+    let summary1 = $("p[name='summary1']")[0];
+    let summary2 = $("p[name='summary2']")[0];
+    let summary3 = $("p[name='summary3']")[0];
+    let other = $("input[name='other']")[0];
+    let sendb = $("#send")[0];
+    function redraw() {
+        if (generalType.value == '0') {
+            deviceID_p.hidden = deviceID.hidden = printerProblem.hidden = printerProblem_p.hidden = summary1.hidden = summary2.hidden = summary3.hidden = other.hidden = sendb.hidden = true;
+        } else if (generalType.value == '1') {
+            deviceID_p.hidden = deviceID.hidden = printerProblem_p.hidden = printerProblem.hidden = other.hidden = sendb.hidden = false;
+            summary2.hidden = summary3.hidden = true;
+            if (deviceID.value != '' && printerProblem.value !='0') {
+                summary1.hidden = other.hidden = sendb.hidden = other.hidden = sendb.hidden = false;
+            } else {
+                summary1.hidden = other.hidden = sendb.hidden = other.hidden = sendb.hidden = true;
+            }
+        } else if (generalType.value == '2') {
+            deviceID_p.hidden = deviceID.hidden = printerProblem_p.hidden = printerProblem.hidden = summary1.hidden = summary3.hidden = true;
+            summary2.hidden = other.hidden = sendb.hidden = false;
+        } else if (generalType.value == '?') {
+            deviceID_p.hidden = deviceID.hidden = printerProblem_p.hidden = printerProblem.hidden = summary1.hidden = summary2.hidden = true;
+            summary3.hidden = other.hidden = sendb.hidden = false;
+        }   
+    }
+    document.addEventListener("DOMContentLoaded", redraw);
+</script>

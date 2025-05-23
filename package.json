@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "main": "main.js",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "crypto-js": "^4.2.0",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "hbs": "^4.2.0",
+    "js-md5": "^0.8.3",
+    "nodemon": "^3.1.9",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
+  },
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
+  }
+}

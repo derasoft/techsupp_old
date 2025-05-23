@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Профиль пользователя</h1>
+    <p>Здесь указана информация о том, как технический специалист должен будет с вами связаться. Пожалуйста, проверяйте точность введённых данных - технический специалист будет использовать их для связи. Если технический специалист не сможет связаться с вами по указанному телефону в течении дня - заявка будет закрыта</p>
+    <form method="post">
+        <label>ФИО</label><br>
+        <input type="text" name="name" value="{{name}}"/><br>
+        <label>Кабинет</label><br>
+        <input type="text" name="cabinet" value="{{cabinet}}"/><br>
+        <label>Телефон рабочий</label><br>
+        <input type="text" name="avaya" value="{{avaya}}"/><br>
+        <label>Телефон мобильный</label><br>
+        <input type="text" name="phone" value="{{phone}}"/><br>
+        <label>E-mail</label><br>
+        <input type="text" name="email" value="{{email}}"/><br>
+        <input type="submit" value="обновить информацию" /><br>
+    </form>
+    <p>Здесь перечислены ваши активные заявки</p>
+    {{{prob_user que id}}}
+</body>
+</html>

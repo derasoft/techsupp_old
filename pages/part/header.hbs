@@ -1,0 +1,20 @@
+<div>
+    <a href="/"><img src="/static/logo.png" width="150"></a><br>
+    Технический портал
+</div>
+<div>
+    <a href="/que/new">Оставить заявку</a>
+</div>
+<div>
+    <a href="/adm/device">Список устройств</a>
+</div>
+<div>
+    <a href="/adm/db/mtp">Таблица "Модели-детали"</a>
+</div>
+<div>
+    {{#if user}}
+        <p>Рады видеть вас, <a href="/profile">{{user}}</a> <button type="button" onclick="window.location.replace('/logout')">Выйти</button></p>
+    {{else}}
+        <p>Пожалуйста, <a href="/login">войдите</a> или <a href="/reg">зарегестрируйтесь.</a></p>
+    {{/if}}
+</div>

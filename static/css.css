@@ -1,0 +1,11 @@
+.halfbar_body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(190, 190, 190);
+}
+.ttdd, .ttdd table, .ttdd th, .ttdd td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
