@@ -130,6 +130,7 @@ module.exports = {
                         <input hidden name="type" value="parts" />
                         <input type="number" name="count" />
                         <input type="submit" value="Использовать" />
+                        <a href="/adm/db/change_json?id=${cartriges[c].id}">Редактировать JSON</a>
                         </form>
                     </p>`;
                 }

@@ -143,6 +143,18 @@ expr.app.get("/q_test", async function(req, res){
 });
 
 // Админская секция
+expr.app.post("/adm/db/change_json", expr.urlencodedParser,  async function(req, res){
+    await Parts.update({avail: req.body.value}, {where: {id: req.body.id}});
+    res.redirect(`/adm/device`);
+})
+expr.app.get("/adm/db/change_json", expr.urlencodedParser,  async function(req, res){
+    let log = res.getHeaders().username;
+    if (log == undefined) {res.redirect('/login');}
+    else {
+        let inp =  await partById(req.query.id);
+        res.render('adm/part_json_edit', {user:res.getHeaders().username, inp:inp})
+    }
+})
 expr.app.post("/adm/db/change", expr.urlencodedParser,  async function(req, res){
     switch (req.body.type) {
         case 'parts':
