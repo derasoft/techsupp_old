@@ -170,12 +170,8 @@ expr.app.post("/adm/db/change", expr.urlencodedParser,  async function(req, res)
 
 })
 expr.app.get("/adm/db/que", async function(req, res){
-    let log = res.getHeaders().username;
-    if (log == undefined) {res.redirect('/login');}
-    else {
-        let que = await probAdminTableGet();
-        res.render('all_queries', {user:res.getHeaders().username, que:que[0], adm:que[1], us:que[2], print:que[3]})
-    }
+    let que = await probAdminTableGet();
+    res.render('all_queries', {user:res.getHeaders().username, que:que[0], adm:que[1], us:que[2], print:que[3]})
 });
 expr.app.get("/adm/db/mtp", async function(req, res){
     let models = await db.DeviceModels.findAll({order: [['id', 'ASC']], raw:false, include:{all:true, nested:true}});
@@ -183,27 +179,20 @@ expr.app.get("/adm/db/mtp", async function(req, res){
     res.render('adm/mtp', {user:res.getHeaders().username, models:models, parts:parts});
 });
 expr.app.get("/adm/device", async function(req, res){
-    let log = res.getHeaders().username;
-    if (log == undefined) {res.redirect('/login');}
-    else
-        if (req.query.id != undefined) {
-            let device =  await deviceById(req.query.id);
-            let parts = await partsByDeviceId(device.id);
-            res.render('adm/adm_device', {user:res.getHeaders().username, device:device, parts:parts});
-        }
-        else {
-            let inp = await deviceList();
-            res.render('adm/adm_device_list', {user:res.getHeaders().username, inp:inp});
-        }
+    if (req.query.id != undefined) {
+        let device =  await deviceById(req.query.id);
+        let parts = await partsByDeviceId(device.id);
+        res.render('adm/adm_device', {user:res.getHeaders().username, device:device, parts:parts});
+    }
+    else {
+        let inp = await deviceList();
+        res.render('adm/adm_device_list', {user:res.getHeaders().username, inp:inp});
+    }
 
 });
 expr.app.get("/adm", async function(req, res){
-    let log = res.getHeaders().username;
-    if (log == undefined) {res.redirect('/login');}
-    else {
-        let inp =  await probAdminTableGet();
-        res.render('adm/adm_main', {user:res.getHeaders().username, inp:inp})
-    }
+    let inp =  await probAdminTableGet();
+    res.render('adm/adm_main', {user:res.getHeaders().username, inp:inp})
 });
 
 // Юзерская секция
