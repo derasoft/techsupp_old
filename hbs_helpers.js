@@ -1,3 +1,4 @@
+const e = require('express');
 const hbs = require('handlebars');
 const { Json } = require('sequelize/lib/utils');
 
@@ -24,14 +25,17 @@ module.exports = {
                 <td>Имя устройства</td>
                 <td>Где находится</td>
                 <td>Модель</td>
+                <td>Инвентарник</td>
                 <td>Тип</td>
             </tr>`;
         for (let c in inp) {
+            let y = JSON.parse(inp[c].where);
             x += `<tr>
                 <td>${inp[c].id}</td>
                 <td><a href="/adm/device?id=${inp[c].id}">${inp[c].name}</a></td>
-                <td>${inp[c].where}</td>
+                <td>${y.cab}</td>
                 <td>${inp[c].model_data.name}</td>
+                <td>${y.inv}</td>
                 <td>${inp[c].model_data.type.name}</td>
             </tr>`
         }
@@ -99,11 +103,14 @@ module.exports = {
         que_string += `</table>`;
         return new hbs.SafeString(que_string);
     },
+    // Страница самого устройства
     device_info: function(device, parts) {
+        let wh = JSON.parse(device.where);
         let r = `<h1>${device.name}</h1>
         <p>Тип: ${device.model_data.type.name}</p>
         <p>Модель: ${device.model_data.name}</p>
-        <p>Сейчас находится в: ${device.where}</p>`;
+        <p>Сейчас находится в: ${wh.cab}</p>
+        <p>Инвентарный номер: ${wh.inv}</p>`;
         switch (device.model_data.type.name) {
             case 'Принтер':
                 let cartriges = [];

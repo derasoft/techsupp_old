@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require('path');
 const CryptoJS = require('crypto-js');
 const db = require('./db_config');
 const expr = require('./express_config');
@@ -189,6 +190,15 @@ expr.app.get("/adm/device", async function(req, res){
         res.render('adm/adm_device_list', {user:res.getHeaders().username, inp:inp});
     }
 
+});
+expr.app.get("/adm/downloads", async function(req, res){
+    if (req.query.f == undefined) {
+        res.render('adm/downloads', {user:res.getHeaders().username});
+    }
+    else {
+        res.download(path.join(__dirname, `static/share/${req.query.f}`));
+    }
+    
 });
 expr.app.get("/adm", async function(req, res){
     let inp =  await probAdminTableGet();
