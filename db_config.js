@@ -61,5 +61,9 @@ Parts.belongsTo(Devices, {foreignKey:'device_id'});
 
 
 db.sync({force: false}).then(result=>{
-    // console.log(result); 
+    // console.log(result); \
+    for (let c=0;c<20;c++) {
+        console.log('НЕ ЗАКРЫВАЙ МЕНЯ НЕ ЗАКРЫВАЙ МЕНЯ НЕ ЗАКРЫВАЙ МЕНЯ НЕ ЗАКРЫВАЙ МЕНЯ НЕ ЗАКРЫВАЙ МЕНЯ ');
+    }
+    
 }).catch(err=> console.log(err));

@@ -30,6 +30,7 @@ module.exports = {
             </tr>`;
         for (let c in inp) {
             let y = JSON.parse(inp[c].where);
+            console.log(inp[c].model_data);
             x += `<tr>
                 <td>${inp[c].id}</td>
                 <td><a href="/adm/device?id=${inp[c].id}">${inp[c].name}</a></td>
@@ -149,7 +150,7 @@ module.exports = {
         let r = `<table class="ttdd">
         <tr>
             <td>id</td>
-            <td>Усройство</td>
+            <td>Устройство</td>
             <td>Его части</td>
         </tr>`
         let x, y, z;
@@ -163,7 +164,6 @@ module.exports = {
                         break;
                     }
                 }
-
             }
             r += `<tr>
                 <td>${models[c].id}</td> 
@@ -172,6 +172,23 @@ module.exports = {
             </tr>`;
         }
         r += '</table>';
+        return r;
+    },
+    util_cartriges: function (cartriges) {
+        let r = `<table class="ttdd">
+        <tr>
+            <td>id</td>
+            <td>Имя</td>
+            <td>Кол-во</td>
+        </tr>`
+        for (c of cartriges) {
+            let util = JSON.parse(c.avail).util;
+            r += `<tr>
+                <td>${c.id}</td>
+                <td>${c.name}</td>
+                <td>${util}</td>
+            </tr>`;
+        }
         return r;
     }
 }
