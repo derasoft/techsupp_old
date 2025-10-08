@@ -1,23 +1,22 @@
-<div>
-    <a href="/"><img src="/static/logo.png" width="150"></a><br>
-    Технический портал
-</div>
-<div hidden>
-    <a href="/que/new">Оставить заявку</a>
-</div>
-<div>
-    <a href="/adm/device">Список принтеров</a>
-</div>
-<div>
-    <a href="/adm/db/mtp">Подробности о картриджах</a>
-</div>
-<div>
-    <a href="/adm/downloads">Файлы</a>
-</div>
-<div hidden>
-    {{#if user}}
-        <p>Рады видеть вас, <a href="/profile">{{user}}</a> <button type="button" onclick="window.location.replace('/logout')">Выйти</button></p>
-    {{else}}
-        <p>Пожалуйста, <a href="/login">войдите</a> или <a href="/reg">зарегестрируйтесь.</a></p>
-    {{/if}}
-</div>
+<header class="halfbar_body">
+    <div>
+        <a href="/"><img src="/static/logo.png" width="150"></a><br>
+        Технический портал
+    </div>
+    <div hidden>
+        <a href="/que/new">Оставить заявку</a>
+    </div>
+    <div>
+        <a href="/adm/device">Принтерные таблицы</a>
+    </div>
+    <div>
+        <a href="/adm/downloads">Файлы</a>
+    </div>
+    <div hidden>
+        {{#if user}}
+            <p>Рады видеть вас, <a href="/profile">{{user}}</a> <button type="button" onclick="window.location.replace('/logout')">Выйти</button></p>
+        {{else}}
+            <p>Пожалуйста, <a href="/login">войдите</a> или <a href="/reg">зарегестрируйтесь.</a></p>
+        {{/if}}
+    </div>
+</header>

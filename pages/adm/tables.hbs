@@ -1,0 +1,21 @@
+<p><i>нажми на заголовок, чтобы увидеть/скрыть таблицу</i></p>
+<h1 id="h1">Список устройств</h1>
+{{{ devices_to_table devices }}}
+<h1 id="h2">Таблица "Детали-к-Моделям"</h1>
+{{{ table_parts_to_components models parts }}}
+<h1 id="h3">Утиль</h1>
+{{{ util_cartriges parts }}}
+
+<script>
+    let devices = document.getElementById('devices');
+    devices.hidden = true;
+    document.getElementById('h1').onclick = function() {devices.hidden = !devices.hidden};
+    let partsToComponents = document.getElementById('partsToComponents');
+    partsToComponents.hidden = true;
+    document.getElementById('h2').onclick = function() {partsToComponents.hidden = !partsToComponents.hidden};
+    let util = document.getElementById('util');
+    util.hidden = true;
+    document.getElementById('h3').onclick = function() {util.hidden = !util.hidden};
+
+
+</script>

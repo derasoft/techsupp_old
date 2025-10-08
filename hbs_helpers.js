@@ -1,6 +1,5 @@
 const e = require('express');
 const hbs = require('handlebars');
-const { Json } = require('sequelize/lib/utils');
 
 function get_type(x) {
     switch(x) {
@@ -18,8 +17,9 @@ function get_status(x) {
     }
 }
 module.exports = {
+    // Список всех устройств
     devices_to_table: function(inp) {
-        let x = `<table class="ttdd">
+        let x = `<table class="ttdd" id="devices">
             <tr>
                 <td>id</td>
                 <td>Имя устройства</td>
@@ -30,7 +30,6 @@ module.exports = {
             </tr>`;
         for (let c in inp) {
             let y = JSON.parse(inp[c].where);
-            console.log(inp[c].model_data);
             x += `<tr>
                 <td>${inp[c].id}</td>
                 <td><a href="/adm/device?id=${inp[c].id}">${inp[c].name}</a></td>
@@ -132,13 +131,12 @@ module.exports = {
                     }
                     cartSelect += '</select>';
                     r += `<p>
-                        <form action="/adm/db/change" method="post">${cartriges[c].descr} ${cartriges[c].name + '<br>' + cartAval + cartSelect}
+                        <form action="/adm/db/device" method="post">${cartriges[c].descr} ${cartriges[c].name + '<br>' + cartAval + cartSelect}
                         <input hidden name="device_id" value="${device.id}" />
                         <input hidden name="id" value="${cartriges[c].id}" />
                         <input hidden name="type" value="parts" />
                         <input type="number" name="count" />
                         <input type="submit" value="Использовать" />
-                        <a href="/adm/db/change_json?id=${cartriges[c].id}">Редактировать JSON</a>
                         </form>
                     </p>`;
                 }
@@ -146,8 +144,9 @@ module.exports = {
         }
         return r;
     },
+    // Таблица "Детали-к-Устройствам"
     table_parts_to_components: function (models, parts) {
-        let r = `<table class="ttdd">
+        let r = `<table class="ttdd" id="partsToComponents">
         <tr>
             <td>id</td>
             <td>Устройство</td>
@@ -174,8 +173,9 @@ module.exports = {
         r += '</table>';
         return r;
     },
+    // Полный перечень утиля
     util_cartriges: function (cartriges) {
-        let r = `<table class="ttdd">
+        let r = `<table class="ttdd" id="util">
         <tr>
             <td>id</td>
             <td>Имя</td>
