@@ -5,7 +5,15 @@ const urlParser = express.urlencoded({ extended: true });
 
 const assFunc = require("../assist_function");
 const db = require('../db_config');
-
+router.get("/editor/device", async function (req, res) {
+   let device = await assFunc.deviceById(req.query.id);
+   device.where = JSON.parse(device.where);
+   let models = await assFunc.deviceModelsList();
+   res.render("editors/device_editor", {user:res.getHeaders().username, device: device, models: models});
+});
+router.post("/editor/device", urlParser, async function(req, res){
+    
+})
 router.get("/db/que", async function(req, res){
     let que = await assFunc.probAdminTableGet();
     res.render('all_queries', {user:res.getHeaders().username, que:que[0], adm:que[1], us:que[2], print:que[3]})
@@ -42,7 +50,7 @@ router.get("/downloads", async function(req, res){
         res.render('adm/downloads', {user:res.getHeaders().username});
     }
     else {
-        res.download(path.join(__dirname, `static/share/${req.query.f}`));
+        res.download(path.join(__dirname, `../static/share/${req.query.f}`));
     }
 
 });

@@ -21,12 +21,11 @@ export async function partsList() {
     let res = await db.Parts.findAll({order: [['id', 'ASC']], raw:false, include:{all:true, nested:true}});
     return parseNestedQuery(res);
 }
-// Получить устройство с указанным id
+// Получить нечто по id
 export async function deviceById(x) {
     let r = await db.Devices.findOne({where:{id: x}, raw:true, nest:true, include:{all:true, nested:true}});
     return r;
 }
-// Получить деталь с указанным id
 export async function partById(x) {
     let r = await db.Parts.findOne({where:{id: x}, raw:true, nest:true, include:{all:true, nested:true}});
     return r;

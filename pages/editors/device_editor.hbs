@@ -1,0 +1,16 @@
+<form action="/editor/device" method="post">
+    <h1>Редактирование: {{ device.name }}</h1>
+    <p>Название: <input id="name" value="{{ device.name }}"></p>
+    <p>Кабинет: <input id="cab" value="{{ device.where.cab }}"></p>
+    <p>Инвентарник: <input id="inv" value="{{device.where.inv}}"></p>
+    <select id="model">
+        {{#each models}}
+            <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+    <input type="submit" value="Сохранить"/>
+</form>
+
+<script>
+    document.getElementById("model").value = String({{device.model}})
+</script>
