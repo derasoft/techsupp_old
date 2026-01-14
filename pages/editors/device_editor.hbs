@@ -1,9 +1,12 @@
-<form action="/editor/device" method="post">
+<form action="" method="post">
     <h1>Редактирование: {{ device.name }}</h1>
-    <p>Название: <input id="name" value="{{ device.name }}"></p>
-    <p>Кабинет: <input id="cab" value="{{ device.where.cab }}"></p>
-    <p>Инвентарник: <input id="inv" value="{{device.where.inv}}"></p>
-    <select id="model">
+    <input id="id" name="id" value="{{ device.id }}" hidden>
+    <p>Название: <input id="name" name="name" value="{{ device.name }}"></p>
+    <p>Кабинет: <input id="cab" name="cab" value="{{ device.where.cab }}"></p>
+    <p>Инвентарник: <input id="inv" name="inv" value="{{device.where.inv}}"></p>
+    <p>IP: <input id="ip" name="ip" value="{{device.where.ip}}"></p>
+    <p>MAC: <input id="mac" name="mac" value="{{device.where.mac}}"></p>
+    <select id="model" name="model">
         {{#each models}}
             <option value="{{this.id}}">{{this.name}}</option>
         {{/each}}
