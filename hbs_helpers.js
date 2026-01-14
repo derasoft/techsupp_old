@@ -26,13 +26,9 @@ module.exports = {
                 <td>Где находится</td>
                 <td>Модель</td>
                 <td>Инвентарник</td>
-<<<<<<< HEAD
-                <td></td>
-=======
-                <td>Тип</td>
                 <td>IP</td>
                 <td>MAC</td>
->>>>>>> 552ed2e237605b65e35bccef53b79947f2259eec
+                <td></td>
             </tr>`;
         for (let c in inp) {
             let y = JSON.parse(inp[c].where);
@@ -42,13 +38,9 @@ module.exports = {
                 <td>${y.cab}</td>
                 <td>${inp[c].model_data.name}</td>
                 <td>${y.inv}</td>
-<<<<<<< HEAD
-                <td><a href="/adm/editor/device?id=${inp[c].id}">✏️</a></td>
-=======
-                <td>${inp[c].model_data.type.name}</td>
                 <td>${y.ip}</td>
                 <td>${y.mac}</td>
->>>>>>> 552ed2e237605b65e35bccef53b79947f2259eec
+                <td><a href="/adm/editor/device?id=${inp[c].id}">✏️</a></td>
             </tr>`
         }
         x += '</table>'
