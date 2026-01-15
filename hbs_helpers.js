@@ -31,15 +31,15 @@ module.exports = {
                 <td></td>
             </tr>`;
         for (let c in inp) {
-            let y = JSON.parse(inp[c].where);
+            // let y = JSON.parse(inp[c].where);
             x += `<tr>
                 <td>${inp[c].id}</td>
                 <td><a href="/adm/device?id=${inp[c].id}">${inp[c].name}</a></td>
-                <td>${y.cab}</td>
+                <td>${inp[c].cab}</td>
                 <td>${inp[c].model_data.name}</td>
-                <td>${y.inv}</td>
-                <td>${y.ip}</td>
-                <td>${y.mac}</td>
+                <td>${inp[c].inv}</td>
+                <td>${inp[c].ip}</td>
+                <td>${inp[c].mac}</td>
                 <td><a href="/adm/editor/device?id=${inp[c].id}">✏️</a></td>
             </tr>`
         }

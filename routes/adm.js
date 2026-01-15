@@ -7,7 +7,7 @@ const assFunc = require("../assist_function");
 const db = require('../db_config');
 router.get("/editor/device", async function (req, res) {
    let device = await assFunc.deviceById(req.query.id);
-   device.where = JSON.parse(device.where);
+//    device.where = JSON.parse(device.where);
    let models = await assFunc.deviceModelsList();
    res.render("editors/device_editor", {user:res.getHeaders().username, device: device, models: models});
 });
@@ -16,12 +16,10 @@ router.post("/editor/device", urlParser, async function(req, res){
     await db.Devices.update({
         name: req.body.name,
         model: Number(req.body.model),
-        where: JSON.stringify({
-            cab: req.body.cab,
-            inv: req.body.inv,
-            ip: req.body.ip,
-            mac: req.body.mac,
-        })
+        cab: req.body.cab,
+        inv: req.body.inv,
+        ip: req.body.ip,
+        mac: req.body.mac,
     }, {where: {id: req.body.id}});
     res.redirect('/adm/db/tables')
 })
