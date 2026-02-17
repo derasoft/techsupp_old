@@ -109,12 +109,12 @@ module.exports = {
     },
     // Страница самого устройства
     device_info: function(device, parts) {
-        let wh = JSON.parse(device.where);
+        // let wh = JSON.parse(device.where);
         let r = `<h1>${device.name}</h1>
         <p>Тип: ${device.model_data.type.name}</p>
         <p>Модель: ${device.model_data.name}</p>
-        <p>Сейчас находится в: ${wh.cab}</p>
-        <p>Инвентарный номер: ${wh.inv}</p>`;
+        <p>Сейчас находится в: ${device.cab}</p>
+        <p>Инвентарный номер: ${device.inv}</p>`;
         switch (device.model_data.type.name) {
             case 'Принтер':
                 let cartriges = [];
